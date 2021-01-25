@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# CameraDisplayOS
+# Sets up camera display
+# Written by Grant Emsley <grant@emsley.ca>
+# GPL V3
+########
+
+
+# Source error handling, leave this in place
+set -x
+set -e
+
+source /common.sh
+install_cleanup_trap
+
+unpack /filesystem/home/pi /home/"${BASE_USER}" "${BASE_USER}"
+#unpack /filesystem/home/root /root root
+unpack /filesystem/boot /boot
+unpack filesystem/root /
+
+apt-get install -y omxplayer
+
+# Enable camera services
+systemctl enable camera-topleft
+systemctl enable camera-topright
+systemctl enable camera-bottomleft
+systemctl enable camera-bottomright
+
+
+# Hide some boot messages
+sed -i 's/$/ logo.nologo consoleblank=0 loglevel=0 quiet/' /boot/cmdline.txt
+sed -i 's/console=tty1/console=tty3/' /boot/cmdline.txt
+
+# Adjust boot settings - force HDMI on at 1920x1080, set GPU memory size, disable bluetooth.
+echo "hdmi_force_hotplug=1" >> /boot/config.txt
+echo "hdmi_group=1" >> /boot/config.txt
+echo "hdmi_mode=16" >> /boot/config.txt
+echo "gpu_mem_256=128" >> /boot/config.txt
+echo "gpu_mem_512=256" >> /boot/config.txt
+echo "gpu_mem_1024=384" >> /boot/config.txt
+echo "dtoverlay=disable-bt" >> /boot/config.txt
+

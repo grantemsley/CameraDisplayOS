@@ -1,0 +1,21 @@
+# Set the stream URL with username and password for the RTSP stream you want to view on each camera.
+# Use low definition streams if possible to save network bandwidth and processing power.
+# It is unlikely to work if you try to display full HD streams - omxplayer does not like scaling down.
+# The images are being shown at a resolution of 960x540, so anything close to that is better.
+#
+# Typical stream URLs:
+#
+# Bosch: rtsp://user:pass@ipaddress:554/?inst=2
+# Brillcam: rtsp://user:pass@ipaddress:554/live/sub
+# AXIS: rtsp://user:pass@ipaddress:554/onvif-media/media.amp 
+# ANPVIZ: rtsp://user:pass@ipaddress:554/stream1 
+# Hikvision: rtsp://user:pass@ipaddress:554/Streaming/Channels/102
+# 
+#
+# If you aren't using a position, set it to 'NONE' to show as blank instead of the not configured message.
+#
+#
+TOP_LEFT=
+TOP_RIGHT=
+BOTTOM_LEFT=
+BOTTOM_RIGHT=NONE

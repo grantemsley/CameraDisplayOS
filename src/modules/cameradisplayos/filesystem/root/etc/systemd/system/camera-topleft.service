@@ -1,0 +1,14 @@
+[Unit]
+Description=Top Left Camera
+
+[Service]
+Type=simple
+EnvironmentFile=/boot/cameras.txt
+ExecStart=/usr/local/bin/camera.sh '0 0 960 540' ${TOP_LEFT}
+User=pi
+
+RestartSec=5
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

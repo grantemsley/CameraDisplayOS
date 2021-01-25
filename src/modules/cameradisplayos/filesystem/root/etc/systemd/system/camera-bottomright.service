@@ -1,0 +1,14 @@
+[Unit]
+Description=Bottom Right Camera
+
+[Service]
+Type=simple
+EnvironmentFile=/boot/cameras.txt
+ExecStart=/usr/local/bin/camera.sh '960 540 1920 1080' ${BOTTOM_RIGHT}
+User=pi
+
+RestartSec=5
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
